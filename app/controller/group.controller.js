@@ -5,8 +5,7 @@ const Group = db.groups;
 exports.create = (req, res) => {
     //Save to postgeSQL db
     Group.create({
-        "name": req.body.firstname, 
-        "studentsQuantity": req.body.studentsQuantity
+        "groupName": req.body.groupName
     }).then(group => {
         res.json(group);
     }).catch(err => {

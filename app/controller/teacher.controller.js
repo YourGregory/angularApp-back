@@ -1,13 +1,13 @@
 const db = require('../config/db.config.js');
-const Subject = db.subjects;
+const Teacher = db.teachers;
 
 //Post a subject
 exports.create = (req, res) => {
     //Save to postgeSQL db
-    Subject.create({
-        "subjectName": req.body.subjectName, 
-        "teacher": req.body.teacher, 
-        "group": req.body.group
+    Teacher.create({
+        "fullName": req.body.fullName, 
+        "username": req.body.username, 
+        "password": req.body.password
     }).then(subject => {
         res.json(subject);
     }).catch(err => {
@@ -18,9 +18,9 @@ exports.create = (req, res) => {
 
 // FETCH All Subjects
 exports.findAll = (req, res) => {
-	Subject.findAll().then(subjects => {
+	Teacher.findAll().then(teachers => {
 			// Send All Subjects to Client
-			res.json(subjects.sort(function(c1, c2){return c1.id - c2.id}));
+			res.json(teachers.sort(function(c1, c2){return c1.id - c2.id}));
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
@@ -28,8 +28,8 @@ exports.findAll = (req, res) => {
 };
 // Find a Subject by Id
 exports.findById = (req, res) => {	
-	Subject.findById(req.params.id).then(subject => {
-			res.json(subject);
+	Teacher.findById(req.params.id).then(teacher => {
+			res.json(teacher);
 		}).catch(err => {
 			console.log(err);
 			res.status(500).json({msg: "error", details: err});
@@ -39,7 +39,7 @@ exports.findById = (req, res) => {
 // Update a Student
 exports.update = (req, res) => {
 	const id = req.body.id;
-	Subject.update( req.body, 
+	Teacher.update( req.body, 
 			{ where: {id: id} }).then(() => {
 				res.status(200).json( { mgs: "Updated Successfully -> Subject Id = " + id } );
 			}).catch(err => {
@@ -51,7 +51,7 @@ exports.update = (req, res) => {
   // Delete a Subject by Id
 exports.delete = (req, res) => {
 	const id = req.params.id;
-	Subject.destroy({
+	Teacher.destroy({
 			where: { id: id }
 		}).then(() => {
 			res.status(200).json( { msg: 'Deleted Successfully -> Student Id = ' + id } );

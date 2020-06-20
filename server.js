@@ -22,9 +22,12 @@ db.sequelize.sync({force: true}).then(() => {
 require('./app/route/student.route.js')(app);
 require('./app/route/group.route')(app);
 require('./app/route/subject.route')(app);
+require('./app/route/teacher.route')(app);
+require('./app/route/mark.route')(app);
+require('./app/route/user.route')(app);
  
 // Create a Server
-var server = app.listen(8080, function () {
+var server = app.listen(3000, function () {
  
   let host = server.address().address
   let port = server.address().port
@@ -34,22 +37,22 @@ var server = app.listen(8080, function () {
  
 function initial(){
  
-  let subject = [
+  let user = [
     {
-      name: "web",
-      teacherSurname: "Orl",
-      hours: 16
+      username: "admin",
+      password: "admin",
+      role: "admin"
     },
     {
-      name: "patterns",
-      teacherSurname: "Volodymyr",
-      hours: 160
+      username: "teacher",
+      password: "test",
+      role: "teacher"
     }
   ]
  
   // Init data -> save to MySQL
-  const Subject = db.subjects;
-  for (let i = 0; i < subject.length; i++) { 
-    Subject.create(subject[i]);  
+  const User = db.users;
+  for (let i = 0; i < user.length; i++) { 
+    User.create(user[i]);  
   }
 }

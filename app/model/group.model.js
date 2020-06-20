@@ -1,11 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Group = sequelize.define('group', {
-        name: {
+        groupName: {
 			type: Sequelize.STRING
-	  },
-	  studentsQuantity: {
-		  type: Sequelize.INTEGER
-      }
+	  }
     });
 
     return Group;

@@ -2,18 +2,18 @@ module.exports = function(app) {
     const groups = require('../controller/group.controller.js');
 
         // Create a new group
-        app.post('/api/groups', groups.create);
+        app.post('/Groups', groups.create);
  
         // Retrieve all groups
-        app.get('/api/groups', groups.findAll);
+        app.get('/Groups', groups.findAll);
      
         // Retrieve a single group by Id
-        app.get('/api/groups/:id', groups.findById);
+        app.get('/Groups/:id', groups.findById);
      
         // Update a group with Id
-        app.put('/api/groups', groups.update);
+        app.put('/Groups', groups.update);
      
         // Delete a group with Id
-        app.delete('/api/groups/:id', groups.delete);
+        app.delete('/Groups/:id', groups.delete);
 
 }

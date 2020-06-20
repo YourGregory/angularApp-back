@@ -5,9 +5,10 @@ const Student = db.students;
 exports.create = (req, res) => {
     //Save to postgeSQL db
     Student.create({
-        "firstname": req.body.firstname, 
-        "lastname": req.body.lastname, 
-        "age": req.body.age
+        "fullName": req.body.fullName, 
+        "username": req.body.username, 
+		"password": req.body.password,
+		"group": req.body.group
     }).then(student => {
         res.json(student);
     }).catch(err => {
